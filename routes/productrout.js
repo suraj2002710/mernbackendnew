@@ -1,0 +1,21 @@
+const express=require("express")
+const router=express.Router()
+const authenticate=require("../middelware/jwtverify")
+const {authorize}=require("../middelware/auth")
+const { upload } = require("../middelware/image")
+const product=require("../componants/productcontroller")
+// router.route("/product").get(authenticate.isauthenticate,authorize("admin"),product.getallproduct)
+router.get("/",(req,res)=>{
+    res.send("sdgsdfgdsfg")
+})
+router.route("/product").get(product.getallsproduct)
+router.route("/pageinate").get(product.paginate)// testion for pagination
+router.route("/productdetails/:id").get(product.getproductdetails)
+router.route("/admin/product").get(product.admin_products)
+// router.route("/product/new").post(authenticate.isauthenticate,product.createproduct)
+router.route("/product/new").post(authenticate.isauthenticate,upload.array("image",6),product.createproduct)
+router.route("/product/:id").put(authenticate.isauthenticate,upload.array("image",6),product.updateproduct).delete(authenticate.isauthenticate,product.deleteproduct).get(product.getproductdetails)
+router.route("/productprice/:gte/:lt").get(product.getallproduct_price)
+router.route("/getreview").get(product.getallproductreviews).delete(authenticate.isauthenticate,product.deletereviews)
+router.put("/review",authenticate.isauthenticate,product.createreviews)
+module.exports=router               
