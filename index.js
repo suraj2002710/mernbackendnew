@@ -26,6 +26,7 @@ const corsOptions = {
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:3002",
+      "https://thunderous-tiramisu-60b5f2.netlify.app"
     ],
     credentials: true,
     exposedHeaders: ["set-cookie"],
