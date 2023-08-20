@@ -22,12 +22,7 @@ cloudinary.config({
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 const corsOptions = {
-    origin: [
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "http://localhost:3002",
-      "https://thunderous-tiramisu-60b5f2.netlify.app"
-    ],
+    origin: "*",
     credentials: true,
     exposedHeaders: ["set-cookie"],
 };
